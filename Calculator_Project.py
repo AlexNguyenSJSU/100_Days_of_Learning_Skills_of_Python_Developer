@@ -1,3 +1,6 @@
+# CALCULATOR PROJECT:
+from art import logo
+
 # Adding
 def add (n1, n2):
     return (n1 + n2)
@@ -27,15 +30,29 @@ operations = {
     '^': power
 }
 
-num1 = int(input("What's the first number?: "))
+def calculator():
+    print(logo)
+    check_loop = 'y'
 
-for symbol in operations:
-    print(symbol)
-user_symbol = input("Pick an operation from the line above: ")
+    num1 = float(input("What's the first number?: "))
 
-num2 = int(input("What's the second number?: "))
+    while check_loop == 'y':
+        for symbol in operations:
+            print(symbol)
+        user_symbol = input("Pick an operation from the line above: ")
 
-function_operation = operations[user_symbol]
-answer = function_operation(num1, num2)
+        num_next = float(input("What's the next number?: "))
 
-print(f"{num1} {user_symbol} {num2} = {answer}")
+        function_operation = operations[user_symbol]
+        answer = function_operation(num1, num_next)
+
+        print(f"{num1} {user_symbol} {num_next} = {answer}")
+
+        check = input(f"Type \'y\' to continue calculating with {answer}, or type \'n\' to start a new calculation: ")
+        if check == 'y':
+            num1 = answer
+        else:
+            check_loop = 'n'
+            calculator()
+
+calculator()
